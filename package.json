@@ -1,0 +1,17 @@
+{
+  "name": "rest-countries-api-with-color-theme-switcher-master",
+  "version": "1.0.0",
+  "description": " Api to See all countries on the homepage",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeffer Rojas",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "webpack": "^5.91.0"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  }
+}
