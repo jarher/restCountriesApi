@@ -1,13 +1,18 @@
 const { fetchData } = require("./fetch/fetch.js");
 
-const urlRegion =
-  "https://restcountries.com/v3.1/region/europe?fields=name,population,region,capital";
-const urlCountry =
-  "https://restcountries.com/v3.1/name/germany?fields=name,nativeName,population,region,subregion,capital,topLevelDomain,currencies,languajes,borders,flags";
+const setRegionUrl = (regionName) =>
+  `https://restcountries.com/v3.1/region/${regionName}?fields=name,population,region,capital,flags`;
+
+const setCountryUrl = (countryName) =>
+  `https://restcountries.com/v3.1/name/${countryName}?fields=name,nativeName,population,region,subregion,capital,topLevelDomain,currencies,languajes,borders,flags`;
 
 async function getApiData() {
-  const res = await fetchData(urlCountry);
-  console.log(res);
+  try {
+    const res = await fetchData(setCountryUrl("europa"));
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-console.log(getApiData());
+getApiData();

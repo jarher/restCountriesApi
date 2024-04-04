@@ -3,7 +3,11 @@ async function fetchData(url) {
     "Content-Type": "application/json",
     method: "GET",
   });
-  return res.json();
+  if (res.status == 404) {
+    throw new Error("Resource Not Found");
+  } else {
+    return res.json();
+  }
 }
 
 exports.fetchData = fetchData;
