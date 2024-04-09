@@ -1,0 +1,54 @@
+section(class="country-section hide")
+    div.button-back-container
+        button
+            a(href="#/") Back
+    div.row
+        div.col
+            img(src=data.flag alt="flag of " + data.name)
+        div.col
+            div.row
+                h1.country-name= data.name
+            div.row
+                div.col
+                    p
+                        span.item-title
+                            Native Name: 
+                        span= data.nativeName
+
+                    p
+                        span.item-title Population: 
+                        span= data.population
+
+                    p
+                        span.item-title Region: 
+                        span= data.region
+
+                    p
+                        span.item-title Sub Region: 
+                        span= data.subregion
+
+                    p
+                        span.item-title Capital: 
+                        span= data.capital
+
+                div.col
+                    p
+                        span.item-title Top Level Domain: 
+                        span= data.topleveldomain
+
+                    p
+                        span.item-title Currencies: 
+                        span= data.currencies
+
+                    p
+                        span.item-title Languages: 
+                        each language, index in data.languages 
+                            if index < data.languages.length - 1
+                                span= language.name + ", "
+                            else 
+                                span= language.name
+            div.row
+                p
+                    span.item-title Border Countries:
+                    each border in data.borders 
+                        span.borders-tag= border

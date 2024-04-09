@@ -1,0 +1,22 @@
+section(class="home-section hide")
+    div.search-section
+        form
+            input(type="search" name="" id="" placeholder="search for a country" aria-placeholder="search for a country")
+            button(type="submit")   
+        div.select-container
+            select(name="select-region" id="select-region" aria-placeholder="filter by region")
+                option(value="") Filter by Region 
+                option(value="africa") Africa 
+                option(value="america") America 
+                option(value="asia") Asia 
+                option(value="europe") Europe 
+                option(value="oceania") Oceania 
+    div.cards-container
+        include components/card.pug
+
+        
+        
+
+            
+        
+    

@@ -1,11 +1,15 @@
-const { fetchData } = require("../src/fetch/fetch.js");
-
-const urlRegion =
-  "https://restcountries.com/v3.1/region/europe?fields=name,population,region,capital";
-const urlCountry =
-  "https://restcountries.com/v3.1/name/germany?fields=name,nativeName,population,region,subregion,capital,topLevelDomain,currencies,languajes,borders";
+const { fetchData } = require("../src/fetch.js");
+const { setRegionUrl, setCountryUrl } = require("../src/urlSetters.js");
 
 test("GET HTTP request", async () => {
-  const data = await fetchData(urlCountry);
-  expect(data.length).toBeGreaterThan(0);
+  const res = await fetchData(setCountryUrl("russia"));
+  expect(res.ok).toBeTruthy();
+});
+
+test("the fetch fails with a Resource not found", async () => {
+  try {
+    await fetchData();
+  } catch (error) {
+    expect(error).toMatch("Resource not found");
+  }
 });
