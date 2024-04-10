@@ -1,8 +1,8 @@
 each country in data 
-    -var countryName= country.name 
+    -var countryName= country.name.common 
     -var flag= country.flags.svg || country.flags.png
 
-    a.card(href="#/country/" + countryName)
+    a.card(href="#/country/&name=" + countryName)
         img.card-image(src=flag alt="flag of " + countryName)
         div.card-content
             span.card-title= countryName
@@ -14,6 +14,6 @@ each country in data
                 span.item-region-content= country.region
             p
                 span.item-name Capital:
-                span.item-capital-content= country.capital 
+                span.item-capital-content= country.capital[0] 
 
 
