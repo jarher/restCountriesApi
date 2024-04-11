@@ -11,9 +11,10 @@ export default function RenderView({
   //select class name of template for add transition effect
   let cssSelector;
   let content;
+  const homeData = initialFilter ? initialFilter(countriesData) : countriesData;
 
   if (isHomeActive) {
-    content = homeTemplate({ data: initialFilter(countriesData) });
+    content = homeTemplate({ data: homeData });
     cssSelector = ".home-section";
   } else {
     content = countryTemplate({ data: countriesData });

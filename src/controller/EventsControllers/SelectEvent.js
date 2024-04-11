@@ -1,8 +1,5 @@
-import { switchMap } from "rxjs";
+import { map } from "rxjs";
 
 export default function SelectEvent(fromEvent) {
-  const selectRegion = document.querySelector("#select-region");
-  // return fromEvent(selectRegion, "change").pipe(
-  //   switchMap((e) => AjaxEvent(setRegionUrl(e.target.value)))
-  // );
+  return fromEvent(document, "change").pipe(map((e) => e.target.value));
 }
