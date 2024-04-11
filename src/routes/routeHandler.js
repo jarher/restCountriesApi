@@ -3,7 +3,7 @@ import {
   pageTransition,
   setCountryUrl,
   setRegionUrl,
-} from "../helpers.js";
+} from "../helpers/countryLoader.js";
 import homeTemplate from "../templates/home.pug";
 import countryTemplate from "../templates/country.pug";
 import data from "../../data.json";

@@ -1,3 +1,24 @@
-export default function RenderView(data, template) {
-  document.querySelector("main").innerHTML = template({ data });
+import homeTemplate from "../templates/home.pug";
+import countryTemplate from "../templates/country.pug";
+import { pageTransition } from "../helpers/DOM-helpers.js";
+
+export default function RenderView({
+  isHomeActive,
+  initialFilter,
+  countriesData,
+  timer,
+}) {
+  //select class name of template for add transition effect
+  let cssSelector;
+  let content;
+
+  if (isHomeActive) {
+    content = homeTemplate({ data: initialFilter(countriesData) });
+    cssSelector = ".home-section";
+  } else {
+    content = countryTemplate({ data: countriesData });
+    cssSelector = ".country-section";
+  }
+  document.querySelector("main").innerHTML = content;
+  pageTransition(cssSelector, timer);
 }

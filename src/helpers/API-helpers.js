@@ -5,7 +5,7 @@ export const setRegionUrl = (regionName) =>
   `https://restcountries.com/v3.1/region/${regionName}?fields=name,population,region,capital,flags`;
 
 export const setCountryUrl = (countryName) =>
-  `https://restcountries.com/v3.1/name/${countryName}?fields=name,nativeName,population,region,subregion,capital,topleveldomain,currencies,languajes,borders,flags`;
+  `https://restcountries.com/v3.1/name/${countryName}?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags`;
 
 export function filterInitialData(data) {
   const countriesToInclude = [

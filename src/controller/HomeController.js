@@ -1,4 +1,4 @@
-import { setRegionUrl } from "../helpers.js";
+import { setRegionUrl } from "../helpers/countryLoader.js";
 import data from "../../data.json";
 import { Observable, filter, fromEvent } from "rxjs";
 

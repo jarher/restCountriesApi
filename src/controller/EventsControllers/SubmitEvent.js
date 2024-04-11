@@ -1,8 +1,7 @@
 import { map, filter } from "rxjs";
 
 export default function SubmitEvent(event) {
-  const searchForm = document.getElementById("search-form");
-  return event(searchForm, "submit").pipe(
+  return event(document, "submit").pipe(
     map((event) => {
       event.preventDefault();
       const target = event.target[0];

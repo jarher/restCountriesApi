@@ -1,54 +1,61 @@
+-var countryData = data[0]
+-var countryDataLanguages = Object.values(countryData.languages)
+-var countryCurrencies = Object.values(countryData.currencies)
+-var countryNativeNames = Object.values(countryData.name.nativeName)
+
 section(class="country-section hide")
     div.button-back-container
         button
             a(href="#/") Back
     div.row
         div.col
-            img(src=data.flag alt="flag of " + data.name)
+            img(src=countryData.flags.svg || countryData.flags.png alt=countryData.flags.alt)
         div.col
             div.row
-                h1.country-name= data.name
+                h1.country-name= countryData.name.common
+
             div.row
                 div.col
                     p
-                        span.item-title
-                            Native Name: 
-                        span= data.nativeName
+                        span.item-title Native Name: 
+                            each nativename in countryNativeNames
+                                span= nativename.common
 
                     p
                         span.item-title Population: 
-                        span= data.population
+                        span= countryData.population
 
                     p
                         span.item-title Region: 
-                        span= data.region
+                        span= countryData.region
 
                     p
                         span.item-title Sub Region: 
-                        span= data.subregion
+                        span= countryData.subregion
 
                     p
                         span.item-title Capital: 
-                        span= data.capital
+                        span= countryData.capital
 
                 div.col
                     p
                         span.item-title Top Level Domain: 
-                        span= data.topleveldomain
+                        span= countryData.tld[0]
 
                     p
                         span.item-title Currencies: 
-                        span= data.currencies
+                        each currency in countryCurrencies
+                            span= currency.name
 
                     p
                         span.item-title Languages: 
-                        each language, index in data.languages 
-                            if index < data.languages.length - 1
-                                span= language.name + ", "
+                        each language, index in countryDataLanguages 
+                            if index < countryDataLanguages.length - 1
+                                span= language + ", "
                             else 
-                                span= language.name
+                                span= language
             div.row
                 p
                     span.item-title Border Countries:
-                    each border in data.borders 
+                    each border in countryData.borders 
                         span.borders-tag= border

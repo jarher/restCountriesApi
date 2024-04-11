@@ -1,9 +1,10 @@
-import { loadCountries } from "./helpers.js";
+import { loadCountries } from "./helpers/countryLoader.js";
 import { filter, fromEvent, timer } from "rxjs";
 import HomeController from "./controller/HomeController.js";
 import CountryController from "./controller/CountryController.js";
 import routeHandler from "./routes/routeHandler.js";
 import homeTemplate from "./templates/home.pug";
+import countryTemplate from "./templates/country.pug";
 import RenderView from "./view/RenderView.js";
 import SelectEvent from "./controller/EventsControllers/SelectEvent.js";
 import SwitchThemeEvent from "./controller/EventsControllers/SwitchThemeEvent.js";
@@ -15,6 +16,7 @@ import "./css/styles.css";
 import {
   filterInitialData,
   initialUrl,
+  setCountryUrl,
   setRegionUrl,
 } from "./helpers/API-helpers.js";
 
@@ -29,13 +31,13 @@ routeHandler({
 const loaderParameters = {
   AjaxEvent,
   RenderView,
+  url: initialUrl,
+  isHomeActive: true,
+  initialFilter: filterInitialData,
   timer,
 };
 //load initial countries
 if (LoadDOMEvent(fromEvent)) {
-  loaderParameters.url = initialUrl;
-  loaderParameters.template = homeTemplate;
-  loaderParameters.initialFilter = filterInitialData;
   loadCountries(loaderParameters);
 }
 
@@ -44,14 +46,18 @@ if (LoadDOMEvent(fromEvent)) {
 //cargar parametros del loader necesarios
 //llammar loadcountries (cambiar nombre de funcion más adecuado)
 //load countries from region
-// SelectEvent({ AjaxEvent, setRegionUrl, fromEvent }).subscribe((region) => {
-// RenderView(res, homeTemplate);
-// pageTransition(".home-section", eventEmitter);
-// });
+SelectEvent(fromEvent).subscribe((region) => {
+  RenderView(res, homeTemplate);
+  pageTransition(".home-section", eventEmitter);
+});
 
-//load country
-// new SubmitEvent(fromEvent).subscribe((value) => {
-//   console.log(value);
-// });
+// load country
+SubmitEvent(fromEvent).subscribe((value) => {
+  loaderParameters.url = setCountryUrl(value.toLowerCase());
+  loaderParameters.isHomeActive = false;
+  loaderParameters.initialFilter = null;
 
-// SwitchThemeEvent(fromEvent);
+  loadCountries(loaderParameters);
+});
+
+SwitchThemeEvent(fromEvent);
