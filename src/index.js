@@ -1,26 +1,17 @@
-import { loadCountries } from "./helpers/countryLoader.js";
-import { fromEvent, timer } from "rxjs";
-import routeHandler from "./routes/routeHandler.js";
-import RenderView from "./view/RenderView.js";
 import SelectEvent from "./controller/EventsControllers/SelectEvent.js";
 import SwitchThemeEvent from "./controller/EventsControllers/SwitchThemeEvent.js";
 import SubmitEvent from "./controller/EventsControllers/SubmitEvent.js";
-import LoadDOMEvent from "./controller/EventsControllers/LoadDOMEvent.js";
 import AjaxEvent from "./controller/EventsControllers/AjaxEvent.js";
+import routeHandler from "./routes/routeHandler.js";
+import RenderView from "./view/RenderView.js";
+import { filterInitialData, initialUrl } from "./helpers/API-helpers.js";
 import {
-  filterInitialData,
-  initialUrl,
-  setCountryUrl,
-  setRegionUrl,
-} from "./helpers/API-helpers.js";
+  loadCountriesForRegion,
+  loadInitialDataInDOM,
+  loadCountry,
+} from "./helpers/countriesLoader.js";
+import { fromEvent, timer } from "rxjs";
 import "./css/styles.css";
-
-const newInstances = {};
-routeHandler({
-  Controllers: newInstances,
-  render: RenderView,
-  fromEvent,
-});
 
 //initial parameters for loader
 const loaderParameters = {
@@ -31,27 +22,35 @@ const loaderParameters = {
   initialFilter: filterInitialData,
   timer,
 };
+
+// create url hash width region name
+SelectEvent(fromEvent).subscribe({
+  next(region) {
+    window.location.hash = `#/${region}`;
+  },
+  error(error) {
+    console.log(error);
+  },
+});
+
+// create url hash width country name
+SubmitEvent(fromEvent).subscribe({
+  next(country) {
+    window.location.hash = `#/country/${country}`;
+  },
+  error(error) {
+    console.log(error);
+  },
+});
+
 //load initial countries
-if (LoadDOMEvent(fromEvent)) {
-  loadCountries(loaderParameters);
-}
+loadInitialDataInDOM(loaderParameters);
 
-//load countries from region
-SelectEvent(fromEvent).subscribe((region) => {
-  loaderParameters.url = setRegionUrl(region);
-  loaderParameters.isHomeActive = true;
-  loaderParameters.initialFilter = null;
-
-  loadCountries(loaderParameters);
+routeHandler({
+  loadCountry,
+  loadCountriesForRegion,
+  loaderParameters,
+  fromEvent,
 });
-
-// load country
-SubmitEvent(fromEvent).subscribe((value) => {
-  loaderParameters.url = setCountryUrl(value.toLowerCase());
-  loaderParameters.isHomeActive = false;
-  loaderParameters.initialFilter = null;
-
-  loadCountries(loaderParameters);
-});
-
+//change app theme color
 SwitchThemeEvent(fromEvent);

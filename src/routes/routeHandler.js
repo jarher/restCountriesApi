@@ -1,34 +1,24 @@
-import {
-  fetchData,
-  pageTransition,
-  setCountryUrl,
-  setRegionUrl,
-} from "../helpers/countryLoader.js";
-import homeTemplate from "../templates/home.pug";
-import countryTemplate from "../templates/country.pug";
-import data from "../../data.json";
-
-export default function routeHandler({ Controllers, render, fromEvent }) {
-  // const { homeController, countryController } = Controllers;
-
-  // router
+export default function routeHandler({
+  loadCountry,
+  loadCountriesForRegion,
+  loaderParameters,
+  fromEvent,
+}) {
   fromEvent(window, "hashchange").subscribe((x) => {
     const url = x.target.location.hash;
-    const urlHash = url.split("&");
+    const isCountryInHash = url.split("/").includes("country");
+    const region = url.split("/").length == 2 ? url.split("/")[1] : null;
 
-    switch (urlHash[0]) {
-      case "#/":
-        document.querySelector("main").innerHTML = "contenido cargado";
+    if (region) {
+      loadCountriesForRegion(loaderParameters, region);
+      return;
+    }
+    if (isCountryInHash) {
+      const country = url.split("/").pop();
+      console.log(country);
+      loadCountry(loaderParameters, country);
 
-        // render(data, homeTemplate);
-        // pageTransition(".home-section", events);
-
-        break;
-      case "#/country/":
-        console.log("countryName");
-        // render(data[0], countryTemplate);
-        // pageTransition(".country-section", events);
-        break;
+      return;
     }
   });
 }

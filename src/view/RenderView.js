@@ -11,6 +11,8 @@ export default function RenderView({
   //select class name of template for add transition effect
   let cssSelector;
   let content;
+  //if initialFilter exists load first eight countries by default, otherwise load
+  //countries selected by region
   const homeData = initialFilter ? initialFilter(countriesData) : countriesData;
 
   if (isHomeActive) {

@@ -4,9 +4,10 @@
 -var countryNativeNames = Object.values(countryData.name.nativeName)
 
 section(class="country-section hide")
+    
     div.button-back-container
         button
-            a(href="#/") Back
+            a(href="#/"+countryData.region) Back
     div.row
         div.col
             img(src=countryData.flags.svg || countryData.flags.png alt=countryData.flags.alt)
@@ -57,5 +58,8 @@ section(class="country-section hide")
             div.row
                 p
                     span.item-title Border Countries:
-                    each border in countryData.borders 
-                        span.borders-tag= border
+                    if countryData.borders.length > 0
+                        each border in countryData.borders 
+                            span.borders-tag= border
+                    else 
+                        span none
