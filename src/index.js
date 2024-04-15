@@ -11,19 +11,9 @@ import {
   loadCountry,
 } from "./helpers/countriesLoader.js";
 import { fromEvent, timer } from "rxjs";
-import "./css/styles.css";
+import "./sass/style.scss";
 
-//initial parameters for loader
-const loaderParameters = {
-  AjaxEvent,
-  RenderView,
-  url: initialUrl,
-  isHomeActive: true,
-  initialFilter: filterInitialData,
-  timer,
-};
-
-// create url hash width region name
+//Listen change event and create url hash width region name
 SelectEvent(fromEvent).subscribe({
   next(region) {
     window.location.hash = `#/${region}`;
@@ -33,7 +23,7 @@ SelectEvent(fromEvent).subscribe({
   },
 });
 
-// create url hash width country name
+//Listen submit event and create url hash width country name
 SubmitEvent(fromEvent).subscribe({
   next(country) {
     window.location.hash = `#/country/${country}`;
@@ -43,9 +33,20 @@ SubmitEvent(fromEvent).subscribe({
   },
 });
 
-//load initial countries
+//initial parameters for load content
+const loaderParameters = {
+  AjaxEvent,
+  RenderView,
+  url: initialUrl,
+  isHomeActive: true,
+  initialFilter: filterInitialData,
+  timer,
+};
+
+//load initial countries when browser load html document first
 loadInitialDataInDOM(loaderParameters);
 
+//Listen for hash change
 routeHandler({
   loadCountry,
   loadCountriesForRegion,

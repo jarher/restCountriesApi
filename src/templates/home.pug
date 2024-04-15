@@ -1,7 +1,7 @@
 section(class="home-section hide")
     div.search-section
         form#search-form
-            input(type="search" name="" id="" placeholder="search for a country" aria-placeholder="search for a country")
+            input(type="search" name="search-input" id="search-input" placeholder="search for a country..." aria-placeholder="search for a country")
             button(type="submit" value="submit")
                 span.material-symbols-outlined search
         div.select-container
@@ -12,6 +12,7 @@ section(class="home-section hide")
                 option(value="asia") Asia 
                 option(value="europe") Europe 
                 option(value="oceania") Oceania 
+            span(class="material-symbols-outlined expand") expand_more
     div.cards-container
         include components/card.pug
 

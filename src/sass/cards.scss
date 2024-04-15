@@ -1,0 +1,29 @@
+@import "./colorList.scss";
+
+.card {
+  text-decoration: none;
+  font-weight: 14px;
+  color: $Very-Dark-Blue-Text;
+  background-color: $White;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 0px 6px -3px $Dark-Gray;
+  .card-content {
+    padding: 20px 25px 40px;
+    .card-title {
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    p {
+      margin: 5px 0;
+      .item-name {
+        font-weight: 600;
+      }
+      .item-value {
+        margin-left: 5px;
+      }
+    }
+  }
+}

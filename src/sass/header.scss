@@ -1,0 +1,19 @@
+@use "./changeTheme.scss";
+@import "./colorList.scss";
+
+header {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 5px 0px $Dark-Gray;
+  padding: 0 20px;
+  h1 {
+    font-size: 14px;
+  }
+  .switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

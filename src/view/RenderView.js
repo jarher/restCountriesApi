@@ -1,6 +1,9 @@
 import homeTemplate from "../templates/home.pug";
-import countryTemplate from "../templates/country.pug";
-import { pageTransition } from "../helpers/DOM-helpers.js";
+import detailsTemplate from "../templates/details.pug";
+import {
+  insertContentInMainTag,
+  pageTransition,
+} from "../helpers/DOM-helpers.js";
 
 export default function RenderView({
   isHomeActive,
@@ -8,20 +11,15 @@ export default function RenderView({
   countriesData,
   timer,
 }) {
-  //select class name of template for add transition effect
-  let cssSelector;
-  let content;
   //if initialFilter exists load first eight countries by default, otherwise load
   //countries selected by region
   const homeData = initialFilter ? initialFilter(countriesData) : countriesData;
 
-  if (isHomeActive) {
-    content = homeTemplate({ data: homeData });
-    cssSelector = ".home-section";
-  } else {
-    content = countryTemplate({ data: countriesData });
-    cssSelector = ".country-section";
-  }
-  document.querySelector("main").innerHTML = content;
-  pageTransition(cssSelector, timer);
+  insertContentInMainTag(
+    isHomeActive
+      ? homeTemplate({ data: homeData })
+      : detailsTemplate({ data: countriesData })
+  );
+
+  pageTransition("section", timer);
 }

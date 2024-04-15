@@ -13,5 +13,6 @@ export default function SwitchThemeEvent(event) {
     )
     .subscribe((state) => {
       document.body.className = state;
+      document.querySelector(".theme-name").textContent = state.split("-")[0];
     });
 }

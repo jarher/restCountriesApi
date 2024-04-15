@@ -1,0 +1,45 @@
+@use "./loader.scss";
+@use "./header.scss";
+@use "./home.scss";
+@use "./cards.scss";
+@use "./details.scss";
+@import "./colorList.scss";
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100, "YTLC" 500;
+  scroll-behavior: smooth;
+  body {
+    margin: 0;
+    padding: 0;
+    color: $Very-Dark-Blue-Text;
+    main {
+      background-color: $Very-Light-Gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      section {
+        transition: all 0.3s ease-in-out;
+        display: inherit;
+        flex-direction: column;
+        gap: 70px;
+        margin: 20px;
+        opacity: 1;
+      }
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .hide {
+    opacity: 0;
+  }
+}

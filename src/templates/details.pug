@@ -3,23 +3,27 @@
 -var countryCurrencies = Object.values(countryData.currencies)
 -var countryNativeNames = Object.values(countryData.name.nativeName)
 
-section(class="country-section hide")
+section(class="detailed-section hide")
     
     div.button-back-container
-        button
-            a(href="#/"+countryData.region) Back
+        a.detailed-button(href="#/"+countryData.region)
+            span.material-symbols-outlined keyboard_backspace
+            span Back
     div.row
         div.col
-            img(src=countryData.flags.svg || countryData.flags.png alt=countryData.flags.alt)
+            img.country-flag(src=countryData.flags.svg || countryData.flags.png alt=countryData.flags.alt)
         div.col
             div.row
-                h1.country-name= countryData.name.common
+                h1.country-name= countryData.name.official
 
             div.row
                 div.col
                     p
                         span.item-title Native Name: 
-                            each nativename in countryNativeNames
+                        each nativename, index in countryNativeNames
+                            if index < countryNativeNames.length -1
+                                span= nativename.common + ", "
+                            else 
                                 span= nativename.common
 
                     p
@@ -57,9 +61,11 @@ section(class="country-section hide")
                                 span= language
             div.row
                 p
-                    span.item-title Border Countries:
-                    if countryData.borders.length > 0
-                        each border in countryData.borders 
-                            span.borders-tag= border
-                    else 
-                        span none
+                    span.item-title Border Countries:  
+                        if countryData.borders.length > 0
+                            div.borders-container
+                                each border in countryData.borders 
+                                    span.borders-tag= border
+                        else 
+                            span none
+    

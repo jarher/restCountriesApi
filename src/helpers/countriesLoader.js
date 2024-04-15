@@ -1,5 +1,5 @@
 import { setCountryUrl, setRegionUrl } from "./API-helpers.js";
-import { insertLoader } from "./DOM-helpers.js";
+import { insertContentInMainTag, insertLoader } from "./DOM-helpers.js";
 
 function renderData(RenderView, parameters, data) {
   // asign countriesData key with data value in parameters object
@@ -16,21 +16,24 @@ function setParameters(parameters, url, isHomeActive, initialFilter, region) {
 }
 
 export function loadInitialDataInDOM(parameters) {
-  const { AjaxEvent, RenderView, url } = parameters;
-  insertLoader();
-  AjaxEvent(url).subscribe({
-    next: (data) => {
-      parameters.timer(1000).subscribe(() => {
-        renderData(RenderView, parameters, data);
-      });
-    },
-    error: (error) => console.log(error),
-  });
+  try {
+    const { AjaxEvent, RenderView, url } = parameters;
+    // load loader animation before ajax request
+    insertLoader();
+    AjaxEvent(url).subscribe({
+      next: (data) => {
+        parameters.timer(1000).subscribe(() => {
+          renderData(RenderView, parameters, data);
+        });
+      },
+    });
+  } catch {
+    insertContentInMainTag("error");
+  }
 }
 
 export function loadCountry(parameters, country) {
   //asign parameters values based in country
-  console.log(parameters);
   setParameters(parameters, setCountryUrl(country), false, null, null);
   loadInitialDataInDOM(parameters);
 }

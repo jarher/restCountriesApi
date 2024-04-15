@@ -1,0 +1,39 @@
+@import "./colorList.scss";
+
+.detailed-section {
+  font-size: 16px;
+  .button-back-container {
+    .detailed-button {
+      box-shadow: 0px 0px 10px -6px $Dark-Gray;
+      background-color: $White;
+      width: 110px;
+      height: 35px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      border-radius: 3px;
+    }
+  }
+  .country-flag {
+    min-height: 250px;
+    overflow: hidden;
+  }
+  .item-title {
+    font-weight: 800;
+  }
+  .borders-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 10px;
+    .borders-tag {
+      box-shadow: 0px 0px 10px -5px $Dark-Gray;
+      padding: 5px 0;
+      text-align: center;
+      border-radius: 3px;
+      width: 30%;
+    }
+  }
+}

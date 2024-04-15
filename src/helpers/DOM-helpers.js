@@ -1,13 +1,14 @@
-const toggleClass = (selector, nameClass) =>
-  document.querySelector(selector).classList.toggle(nameClass);
+const removeClass = (selector, nameClass) =>
+  document.querySelector(selector).classList.remove(nameClass);
 
 export function pageTransition(selector, event) {
   event(300).subscribe(() => {
-    toggleClass(selector, "hide");
+    removeClass(selector, "hide");
   });
 }
 
+export const insertContentInMainTag = (content) =>
+  (document.querySelector("main").innerHTML = content);
+
 export const insertLoader = () =>
-  (document.querySelector(
-    "main"
-  ).innerHTML = `<span class="loader">Load&nbsp;ng</span>`);
+  insertContentInMainTag(`<span class="loader">L &nbsp; ading</span>`);

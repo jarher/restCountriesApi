@@ -1,0 +1,89 @@
+@import "./colorList.scss";
+
+.home-section {
+  .search-section {
+    background-color: $Very-Light-Gray;
+    position: sticky;
+    top: 0px;
+    padding: 20px 0px 20px;
+    #search-form {
+      display: flex;
+      box-shadow: 0px 0px 10px -6px $Dark-Gray;
+      border-radius: 5px;
+      overflow: hidden;
+      #search-input {
+        order: 2;
+        flex: 3;
+        border: none;
+        appearance: none;
+        &::placeholder {
+          color: $Dark-Gray;
+        }
+        &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+      button {
+        order: 1;
+        flex: 1;
+        border: none;
+        outline: none;
+        background-color: $White;
+        padding: 15px 0;
+        span {
+          vertical-align: middle;
+          color: $Dark-Gray;
+        }
+      }
+    }
+    .select-container {
+      width: 60%;
+      margin-top: 50px;
+      border-radius: 5px;
+      position: relative;
+      select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        display: inline-block;
+        padding: 15px;
+        transition: all 0.25s ease;
+        width: 100%;
+        outline: none;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        option {
+          border: none;
+          background-color: transparent;
+          font-weight: 600;
+        }
+        &:active {
+          border: none;
+        }
+        &::ms-expand {
+          display: none;
+        }
+      }
+      .expand {
+        position: absolute;
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 15px;
+        height: 20px;
+      }
+    }
+  }
+  .cards-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    gap: 40px;
+  }
+}
