@@ -6,6 +6,7 @@
     .detailed-button {
       box-shadow: 0px 0px 10px -6px $Dark-Gray;
       background-color: $White;
+      color: $Very-Dark-Blue-Text;
       width: 110px;
       height: 35px;
       text-decoration: none;
@@ -16,24 +17,102 @@
       border-radius: 3px;
     }
   }
-  .country-flag {
-    min-height: 250px;
-    overflow: hidden;
+  .detailed-country-data {
+    .item-title {
+      font-weight: 800;
+    }
+    p {
+      margin: 0.5rem 0;
+    }
+    .row:nth-child(1) {
+      margin-top: 40px;
+      .country-name {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 900;
+      }
+    }
+    .row:nth-child(2) {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      .col:nth-child(2) {
+        margin-top: 45px;
+      }
+    }
+    .row:nth-child(3) {
+      margin-top: 45px;
+      .borders-container {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        .borders-tag {
+          box-shadow: 0px 0px 10px -5px $Dark-Gray;
+          padding: 5px 10px;
+          text-align: center;
+          border-radius: 3px;
+          min-width: 30%;
+          text-decoration: none;
+          color: $Very-Dark-Blue-Text;
+          cursor: pointer;
+        }
+      }
+    }
   }
-  .item-title {
-    font-weight: 800;
+}
+@media (min-width: 600px) {
+  .detailed-img-wrapper {
+    width: 65%;
+    margin: auto;
   }
-  .borders-container {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    gap: 10px;
+  .detailed-country-data {
+    .row:nth-child(2) {
+      display: flex;
+      .col {
+        flex: 1;
+        &:nth-child(2) {
+          margin-top: 0 !important;
+        }
+      }
+    }
     .borders-tag {
-      box-shadow: 0px 0px 10px -5px $Dark-Gray;
-      padding: 5px 0;
-      text-align: center;
-      border-radius: 3px;
-      width: 30%;
+      min-width: 23.5% !important;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .detailed-content {
+    display: flex;
+    gap: 50px;
+    .detailed-img-wrapper {
+      flex: 1;
+      margin: 0;
+    }
+    .detailed-country-data {
+      flex: 2;
+      .item-title {
+        font-size: 0.9rem;
+      }
+      .row:nth-child(1) {
+        margin: 0;
+      }
+      .row:nth-child(2) {
+        margin-top: 10px;
+      }
+      .row:nth-child(3) {
+        margin-top: 25px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        .borders-container {
+          margin: 0;
+          .borders-tag {
+            min-width: 17.5% !important;
+          }
+        }
+      }
     }
   }
 }

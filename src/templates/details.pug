@@ -9,13 +9,12 @@ section(class="detailed-section hide")
         a.detailed-button(href="#/"+countryData.region)
             span.material-symbols-outlined keyboard_backspace
             span Back
-    div.row
-        div.col
+    div.detailed-content
+        div.detailed-img-wrapper
             img.country-flag(src=countryData.flags.svg || countryData.flags.png alt=countryData.flags.alt)
-        div.col
+        div.detailed-country-data
             div.row
                 h1.country-name= countryData.name.official
-
             div.row
                 div.col
                     p
@@ -60,12 +59,11 @@ section(class="detailed-section hide")
                             else 
                                 span= language
             div.row
-                p
-                    span.item-title Border Countries:  
-                        if countryData.borders.length > 0
-                            div.borders-container
-                                each border in countryData.borders 
-                                    span.borders-tag= border
-                        else 
-                            span none
+                span.item-title Border Countries:  
+                if countryData.borders.length > 0
+                    div.borders-container
+                        each border in countryData.borders 
+                            a(class="borders-tag" href="#/country/" + acronyms[border].toLowerCase())= acronyms[border]
+                else 
+                    span none
     
